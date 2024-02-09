@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Install cert manager at Kubernetes/MicroK8s | Platform Engineer</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Install cert manager at Kubernetes/MicroK8s" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://cert-manager.io/docs/installation/" />
+<meta property="og:description" content="https://cert-manager.io/docs/installation/" />
+<link rel="canonical" href="http://localhost:4000/kubernetes/certificates/letsencrypt/2024/02/08/install-cert-manager.html" />
+<meta property="og:url" content="http://localhost:4000/kubernetes/certificates/letsencrypt/2024/02/08/install-cert-manager.html" />
+<meta property="og:site_name" content="Platform Engineer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-08T07:03:52+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Install cert manager at Kubernetes/MicroK8s" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-08T07:03:52+01:00","datePublished":"2024-02-08T07:03:52+01:00","description":"https://cert-manager.io/docs/installation/","headline":"Install cert manager at Kubernetes/MicroK8s","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/kubernetes/certificates/letsencrypt/2024/02/08/install-cert-manager.html"},"url":"http://localhost:4000/kubernetes/certificates/letsencrypt/2024/02/08/install-cert-manager.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Platform Engineer" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Platform Engineer</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Install cert manager at Kubernetes/MicroK8s</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-02-08T07:03:52+01:00" itemprop="datePublished">Feb 8, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://cert-manager.io/docs/installation/" target="_new">https://cert-manager.io/docs/installation/</a></p>
+
+<p>and</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">microk8s <span class="nb">enable </span>cert-manager</code></pre></figure>
+
+<p>output</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">chris@kube-2:~<span class="nv">$ </span>microk8s <span class="nb">enable </span>cert-manager
+Infer repository core <span class="k">for </span>addon cert-manager
+Enable DNS addon
+Infer repository core <span class="k">for </span>addon dns
+Addon core/dns is already enabled
+Enabling cert-manager
+namespace/cert-manager created
+customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io created
+serviceaccount/cert-manager-cainjector created
+serviceaccount/cert-manager created
+serviceaccount/cert-manager-webhook created
+configmap/cert-manager-webhook created
+clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificates created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-orders created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
+clusterrole.rbac.authorization.k8s.io/cert-manager-view created
+clusterrole.rbac.authorization.k8s.io/cert-manager-edit created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created
+clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificates created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created
+role.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created
+role.rbac.authorization.k8s.io/cert-manager:leaderelection created
+role.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created
+rolebinding.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created
+rolebinding.rbac.authorization.k8s.io/cert-manager:leaderelection created
+rolebinding.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created
+service/cert-manager created
+service/cert-manager-webhook created
+deployment.apps/cert-manager-cainjector created
+deployment.apps/cert-manager created
+deployment.apps/cert-manager-webhook created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
+validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
+Waiting <span class="k">for </span>cert-manager to be ready.
+..ready
+Enabled cert-manager
+
+<span class="o">===========================</span>
+
+Cert-manager is installed. As a next step, try creating a ClusterIssuer
+<span class="k">for </span>Let<span class="s1">'s Encrypt by creating the following resource:
+
+$ microk8s kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    # You must replace this email address with your own.
+    # Let'</span>s Encrypt will use this to contact you about expiring
+    <span class="c"># certificates, and issues related to your account.</span>
+    email: me@example.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      <span class="c"># Secret resource that will be used to store the account's private key.</span>
+      name: letsencrypt-account-key
+    <span class="c"># Add a single challenge solver, HTTP01 using nginx</span>
+    solvers:
+    - http01:
+        ingress:
+          class: public
+EOF
+
+Then, you can create an ingress to expose <span class="s1">'my-service:80'</span> on <span class="s1">'https://my-service.example.com'</span> with:
+
+<span class="nv">$ </span>microk8s <span class="nb">enable </span>ingress
+<span class="nv">$ </span>microk8s kubectl create ingress my-ingress <span class="se">\</span>
+    <span class="nt">--annotation</span> cert-manager.io/cluster-issuer<span class="o">=</span>letsencrypt <span class="se">\</span>
+    <span class="nt">--rule</span> <span class="s1">'my-service.example.com/*=my-service:80,tls=my-service-tls'</span>
+
+chris@kube-2:~<span class="err">$</span></code></pre></figure>
+
+<p>You’ll see an additional namespace and some pods</p>
+
+<p><a href="/images/cert-manager-k9s.png"><img src="/images/cert-manager-k9s.png" alt="cert-manager k9s" /></a></p>
+
+  </div><a class="u-url" href="/kubernetes/certificates/letsencrypt/2024/02/08/install-cert-manager.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Platform Engineer</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Platform Engineer</li><li><a class="u-email" href="mailto:blah@blah.be">blah@blah.be</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/windjuhh"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">windjuhh</span></a></li><li><a href="https://www.twitter.com/none"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">none</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description. Windt.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
