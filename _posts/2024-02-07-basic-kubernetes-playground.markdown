@@ -1,31 +1,46 @@
 ---
 layout: post
-title:  "A basic Kubernetes playground"
+title:  "Create a basic Kubernetes playground"
 date:   2024-02-07 10:46:42 +0100
 categories: kubernetes basics
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+This article assumes you have an operational instance of <a href="https://microk8s.io/" target="_new">MicroK8s</a> installed somewhere at some server.
+You can also install it locally of course, it all depends how you personally like to work.
 
-Jekyll requires blog post files to be named according to the following format:
+I installed an Ubuntu server on a virtual machine at my network and selected to install MicroK8s during the installation of my server.
+Once installed, it requires your user to be a member of the microk8s group. This info can be found at <a href="https://microk8s.io/docs/getting-started" target="_new">https://microk8s.io/docs/getting-started</a>
 
-`YEAR-MONTH-DAY-title.MARKUP`
-
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
-
-![My helpful screenshot](/images/screenshot.png)
-
-Jekyll also offers powerful support for code snippets:
-
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+{% highlight bash %}
+sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+su - $USER
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+now run
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+{% highlight bash %}
+microk8s status
+{% endhighlight %}
+
+and you'll get something like this
+
+[![microk8s status](/images/microk8s-status.png)](/images/microk8s-status.png)
+
+You’ll see currently only 4 addons are enabled by default. When you really start using this playground, you'll notice need more. In the screenshot below you can see the status of my other server which I'm using for quite some time and which has all addons enabled I currently need.
+
+[![microk8s status](/images/microk8s-status-addons.png)](/images/microk8s-status-addons.png)
+
+To enable them, type:
+
+{% highlight bash %}
+microk8s enable cert-manager
+microk8s enable dashboard
+microk8s enable hostpath-storage
+microk8s enable ingress
+microk8s enable metallb
+microk8s enable metrics-server
+microk8s enable rbac
+microk8s enable storage
+{% endhighlight %}  
+
+You now have a working, useable Kubernetes environment to play arround.
