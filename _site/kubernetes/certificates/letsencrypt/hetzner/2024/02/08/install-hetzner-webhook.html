@@ -78,9 +78,14 @@ NOTES:
 It<span class="s1">'s running!
 chris@kube-2:~/projects/cert-manager-webhook-hetzner$</span></code></pre></figure>
 
-<p>You’ll see an additional namespace and some pods</p>
+<p>You’ll see an additional pod in namespace kube-system</p>
 
-<p><a href="/images/cert-manager-k9s.png"><img src="/images/cert-manager-k9s.png" alt="cert-manager k9s" /></a></p>
+<p><a href="/images/hetzner-webhook-k9s.png"><img src="/images/hetzner-webhook-k9s.png" alt="hetzner-webhook k9s" /></a></p>
+
+<p>To uninstall the webhook:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">helm uninstall <span class="nt">--namespace</span> kube-system cert-manager-webhook-hetzner</code></pre></figure>
+
 
   </div><a class="u-url" href="/kubernetes/certificates/letsencrypt/hetzner/2024/02/08/install-hetzner-webhook.html" hidden></a>
 </article>

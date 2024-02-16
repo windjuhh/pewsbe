@@ -40,6 +40,12 @@ chris@kube-2:~/projects/cert-manager-webhook-hetzner$
 
 {% endhighlight %} 
 
-You'll see an additional namespace and some pods
+You'll see an additional pod in namespace kube-system
 
-[![cert-manager k9s](/images/cert-manager-k9s.png)](/images/cert-manager-k9s.png)
+[![hetzner-webhook k9s](/images/hetzner-webhook-k9s.png)](/images/hetzner-webhook-k9s.png)
+
+To uninstall the webhook:
+
+{% highlight bash %}
+helm uninstall --namespace kube-system cert-manager-webhook-hetzner
+{% endhighlight %} 
